@@ -51,18 +51,10 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      - run: apt install curl
       - run:
           name: smoke test
           command: |
-            URL="https://blog.udacity333.com/"
-            # Test if website exists
-            if curl -s --head ${URL} 
-            then
-              return 0
-            else
               return 1
-            fi
       - destroy_environment  
 
 
