@@ -48,9 +48,8 @@ jobs:
        #     ansible-playbook -i inventory.txt main.yml
   smoke_test:
     docker:
-      - image: amazon/aws-cli
+      - image: alpine:latest
     steps:
-      - checkout
       - run:
           name: smoke test
           command: |
@@ -65,4 +64,6 @@ workflows:
     jobs:
       - create_infra
       #- configure_infra
-      - smoke_test
+      - smoke_test:
+          requires: 
+            - create_infra
